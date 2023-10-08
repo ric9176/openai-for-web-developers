@@ -13,7 +13,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     model: "gpt-3.5-turbo",
   });
 
+  const response = await openai.images.generate({
+    prompt: "a software engineer experiencing a hallucination",
+    n: 1,
+    size: "512x512",
+  });
+  const imageUrl = response.data[0].url
+
   const availableModels = await openai.models.list()
 
-  res.status(200).json({ data: availableModels })
+  res.status(200).json({ data: imageUrl })
 }
