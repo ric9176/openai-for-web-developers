@@ -3,7 +3,7 @@
 import { useCompletion } from 'ai/react';
 
 export default function SloganGenerator() {
-  const { completion, input, handleInputChange, handleSubmit } = useCompletion();
+  const { completion, input, handleInputChange, handleSubmit } = useCompletion({ api: 'api/completion' });
 
   return (
     <div className="mx-auto w-full max-w-md py-24 flex flex-col stretch">
