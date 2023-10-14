@@ -5,6 +5,7 @@ import {
   Container,
   VStack,
   Heading,
+  Text,
   Image,
   Input,
   Button,
@@ -18,6 +19,7 @@ export default function SloganGenerator() {
   const [idea, setIdea] = useState('')
   const [isLoading, setIsLoading] = useState(false);
   const [generation, setGeneration] = useState(undefined)
+  const [imageSrc, setImageSrc] = useState(undefined)
 
   async function handleOnGenerateText(e: any) {
     e.preventDefault();
@@ -36,23 +38,13 @@ export default function SloganGenerator() {
 
     setGeneration(data);
 
-    // const { image } = await fetch('/api/image', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     prompt: `
-    //       ${data.title}.
-    //       stylized as a watercolor painting.
-    //       the primary color should be green.
-    //     `
-    //   })
-    // }).then(r => r.json());
-
-    // setIdea(prev => {
-    //   return {
-    //     ...prev,
-    //     image
-    //   }
-    // })
+    const { image } = await fetch('/api/generateImage', {
+      method: 'POST',
+      body: JSON.stringify({
+        prompt
+      })
+    }).then(r => r.json());
+    setImageSrc(image)
 
     setIsLoading(false);
   }
@@ -75,8 +67,9 @@ export default function SloganGenerator() {
           px={8}
         >
           Generate Idea
-          {generation}
         </Button>
+        {imageSrc && <Image alt='idea image' src={imageSrc} />}
+        {isLoading ? <Spinner /> : <Text>{generation}</Text>}
       </HStack>
     </Container>
   );

@@ -16,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // const availableModels = await openai.models.list()
   const completionText = chatCompletion.choices[0].message.content
-  console.log(completionText)
+  // console.log(completionText)
 
   res.status(200).json({ data: completionText })
 }
