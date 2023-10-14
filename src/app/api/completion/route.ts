@@ -19,13 +19,12 @@ export async function POST(req: Request) {
     temperature: 0.6,
     max_tokens: 300,
     prompt: `Create three slogans for a business with unique features.
- 
-Business: Bookstore with cats
-Slogans: "Purr-fect Pages", "Books and Whiskers", "Novels and Nuzzles"
-Business: Gym with rock climbing
-Slogans: "Peak Performance", "Reach New Heights", "Climb Your Way Fit"
-Business: ${prompt}
-Slogans:`,
+    Business: Bookstore with cats
+    Slogans: "Purr-fect Pages", "Books and Whiskers", "Novels and Nuzzles"
+    Business: Gym with rock climbing
+    Slogans: "Peak Performance", "Reach New Heights", "Climb Your Way Fit"
+    Business: ${prompt}
+    Slogans:`,
   });
   // Convert the response into a friendly text-stream
   const stream = OpenAIStream(response);
