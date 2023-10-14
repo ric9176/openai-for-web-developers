@@ -1,9 +1,19 @@
 'use client'
 
-import { useCompletion } from 'ai/react';
+import { useCompletion } from 'ai/react'
+import { useJsonStreaming } from "http-streaming-request";
 
-export default function SloganGenerator() {
-  const { completion, input, handleInputChange, handleSubmit } = useCompletion({ api: 'api/completion' });
+export default function StreamJson() {
+
+  const { completion, input, handleInputChange, handleSubmit } = useCompletion();
+
+
+  const { data } = useJsonStreaming({
+    url: "/api/example",
+    method: "GET",
+  });
+  console.log("🚀 ~ file: page.tsx:16 ~ SloganGenerator ~ data:", data)
+
 
   return (
     <div className="mx-auto w-full max-w-md py-24 flex flex-col stretch">
@@ -15,7 +25,7 @@ export default function SloganGenerator() {
           onChange={handleInputChange}
         />
       </form>
-      <div className="whitespace-pre-wrap my-6">{completion}</div>
+      <div className="whitespace-pre-wrap my-6">{data && data.product}</div>
     </div>
   );
 }
