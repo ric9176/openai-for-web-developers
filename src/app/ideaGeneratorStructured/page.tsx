@@ -14,14 +14,14 @@ import {
   HStack,
 } from '@chakra-ui/react';
 
-export default function SloganGenerator() {
+export default function IdeaGenerator() {
 
   const [idea, setIdea] = useState('')
   const [isLoading, setIsLoading] = useState(false);
   const [generation, setGeneration] = useState(undefined)
   const [imageSrc, setImageSrc] = useState(undefined)
 
-  async function handleOnGenerateText(e: any) {
+  async function handleOnGenerateText(e: React.SyntheticEvent) {
     e.preventDefault();
 
     const prompt = e.target.value
@@ -61,6 +61,7 @@ export default function SloganGenerator() {
         />
         <Spacer />
         <Button
+          type="submit"
           colorScheme="teal"
           onClick={handleOnGenerateText}
           disabled={!idea || isLoading}
@@ -104,7 +105,8 @@ export default function SloganGenerator() {
           <Text><b>Idea:</b> {generation && generation.idea}</Text>
           <Text><b>Mission:</b> {generation && generation.mission}</Text>
           {
-            generation && generation.uniqueSellingPoints && generation.uniqueSellingPoints.map((usp => <Text>{usp}</Text>))
+            generation && generation.uniqueSellingPoints &&
+            generation.uniqueSellingPoints.map((usp => <Text>{usp}</Text>))
           }
         </Box>}
       </HStack>

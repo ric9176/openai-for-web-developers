@@ -18,9 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const ideaAttributes = await openai.chat.completions.create({
     messages: [{
-      role: "user", content: `A unique startup idea to disrupt: ${prompt}, There should be a product, idea, mission and an array of 5 unique selling points, no more than 100 words each, 
-      
-    Return the response as a JSON object with a shape of ${shape}`
+      role: "user", content: `A unique startup idea to disrupt: ${prompt}, There should be a product, idea, mission and an array of 5 unique selling points, no more than 100 words each, Return the response as a JSON object with a shape of ${shape}`
     }],
     model: "gpt-3.5-turbo",
   });
