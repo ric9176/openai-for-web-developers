@@ -103,6 +103,9 @@ export default function SloganGenerator() {
           <Text><b>Product:</b> {generation && generation.idea}</Text>
           <Text><b>Idea:</b> {generation && generation.idea}</Text>
           <Text><b>Mission:</b> {generation && generation.mission}</Text>
+          {
+            generation && generation.uniqueSellingPoints && generation.uniqueSellingPoints.map((usp => <Text>{usp}</Text>))
+          }
         </Box>}
       </HStack>
     </Container >
