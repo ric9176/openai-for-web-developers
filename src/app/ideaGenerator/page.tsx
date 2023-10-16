@@ -44,6 +44,7 @@ export default function SloganGenerator() {
     setImageSrc(image);
 
     setIsLoading(false);
+    setIdea('');
   }
 
   return (
@@ -93,17 +94,18 @@ export default function SloganGenerator() {
       )}
 
       {!isLoading && generation && imageSrc && (
-        <Box
-          bg='white'
+        <VStack
+          bg='whiteAlpha.800'
           color='black'
           borderRadius='lg'
           m={{ sm: 4, md: 16, lg: 10 }}
           p={{ base: 4, sm: 5, md: 5, lg: 16 }}
-          textAlign='center'
+          alignItems='center'
+          spacing={6}
         >
           <Image alt='idea image' src={imageSrc} />
           <Text>{generation}</Text>
-        </Box>
+        </VStack>
       )}
     </Container>
   );
