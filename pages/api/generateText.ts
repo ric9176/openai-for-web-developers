@@ -9,8 +9,12 @@ const openai = new OpenAI({
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { prompt } = JSON.parse(req.body)
 
+  if (!prompt) {
+    return res.status(400).json({ error: 'requiredParam "prompt" is missing' });
+  }
+
   const chatCompletion = await openai.chat.completions.create({
-    messages: [{ role: "user", content: `Write a creative startup idea for the industry: ${prompt}` }],
+    messages: [{ role: "user", content: `Write a creative startup idea to disrupt the industry deliminated by { }, 100 words maximum, {${prompt}}` }],
     model: "gpt-3.5-turbo",
   });
 

@@ -16,6 +16,10 @@ const shape = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { prompt } = JSON.parse(req.body)
 
+  if (!prompt) {
+    return res.status(400).json({ error: 'requiredParam "prompt" is missing' });
+  }
+
   const ideaAttributes = await openai.chat.completions.create({
     messages: [{
       role: "user", content: `A unique startup idea to disrupt: ${prompt}, There should be a product, idea, mission and an array of 5 unique selling points, no more than 100 words each, Return the response as a JSON object with a shape of ${shape}`
