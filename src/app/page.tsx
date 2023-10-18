@@ -68,7 +68,7 @@ export default function StartGenerator() {
         <Text>Product: {data && data.product}</Text>
         <Text>Mission: {data && data.mission}</Text>
         <Text>Idea: {data && data.idea}</Text>
-        <VStack>
+        <VStack display='flex' alignItems='flex-start'>
           {data &&
             data.unique_selling_points &&
             data.unique_selling_points.length > 1 &&

@@ -11,7 +11,6 @@ export const runtime = 'edge';
 
 export async function POST(req: Request) {
   const { prompt } = await req.json();
-  console.log('🚀 ~ file: route.ts:14 ~ POST ~ prompt:', prompt);
 
   const shape = {
     product: 'string',
