@@ -1,6 +1,7 @@
 'use client';
 import { useCompletion } from 'ai/react';
-import { useJsonStreaming } from 'http-streaming-request';
+import { makeStreamingJsonRequest } from 'http-streaming-request';
+import { useState } from 'react';
 import {
   Container,
   Text,
@@ -12,11 +13,19 @@ import {
 } from '@chakra-ui/react';
 
 export default function StartGenerator() {
-  const { data } = useJsonStreaming({
-    url: '/api/completionData',
-    method: 'POST',
-    payload: 'travel',
-  });
+  const [data, setdata] = useState(null);
+  const [input, setInput] = useState('');
+
+  const handleSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    for await (const partialData of makeStreamingJsonRequest({
+      url: '/api/completionData',
+      method: 'POST',
+      payload: { prompt: input },
+    })) {
+      setdata(partialData);
+    }
+  };
 
   return (
     <Container maxW='container.lg' pb={10}>
@@ -26,17 +35,22 @@ export default function StartGenerator() {
           w='60%'
           alignItems='center'
           as='form'
-          // onSubmit={handleSubmit as any}
+          onSubmit={handleSubmit}
         >
           <Input
             placeholder="What industry do you want to disrupt? e.g: 'travel'"
-            // value={input}
-            // onChange={handleInputChange}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
             maxW='lg'
             width='100%'
           />
           <Spacer />
-          <Button type='submit' colorScheme='teal' px={8}>
+          <Button
+            type='submit'
+            colorScheme='teal'
+            px={8}
+            onClick={handleSubmit}
+          >
             Generate Idea
           </Button>
         </HStack>
@@ -54,6 +68,14 @@ export default function StartGenerator() {
         <Text>Product: {data && data.product}</Text>
         <Text>Mission: {data && data.mission}</Text>
         <Text>Idea: {data && data.idea}</Text>
+        <VStack>
+          {data &&
+            data.unique_selling_points &&
+            data.unique_selling_points.length > 1 &&
+            data.unique_selling_points.map((usp, k) => (
+              <Text key-={k}>{usp}</Text>
+            ))}
+        </VStack>
       </VStack>
     </Container>
   );

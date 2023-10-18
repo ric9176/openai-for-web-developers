@@ -123,7 +123,7 @@ export default function IdeaGenerator() {
             <b>Mission:</b> {generation && generation.mission}
           </Text>
           <b>What makes us unique?</b>
-          {generation.unique_selling_points &&
+          {generation &&
             generation.unique_selling_points.map((usp, k) => (
               <Text key-={k}>{usp}</Text>
             ))}
