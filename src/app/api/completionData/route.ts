@@ -12,6 +12,13 @@ export const runtime = 'edge';
 export async function POST(req: Request) {
   const { prompt } = await req.json();
 
+  const shape = {
+    product: 'string',
+    idea: 'string',
+    mission: 'string',
+    unique_selling_points: ['string', 'string', 'string'],
+  };
+
   // Ask OpenAI for a streaming completion given the prompt
   const response = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo',
@@ -21,7 +28,9 @@ export async function POST(req: Request) {
     messages: [
       {
         role: 'user',
-        content: `Write a creative startup idea to disrupt the industry deliminated by { }, 100 words maximum, {${prompt}}`,
+        content: `A unique startup idea to disrupt: ${prompt}, There should be a product, idea, mission and an array of 5 unique selling points, no more than 100 words each, Return the response as a JSON object with a shape of: ${JSON.stringify(
+          shape
+        )}`,
       },
     ],
   });

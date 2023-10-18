@@ -61,9 +61,9 @@ export default function SloganGenerator() {
           <Spacer />
           <Button
             type='submit'
+            isLoading={isLoading}
             colorScheme='teal'
             onClick={handleOnGenerateText}
-            disabled={!idea || isLoading}
             px={8}
           >
             Generate Idea
