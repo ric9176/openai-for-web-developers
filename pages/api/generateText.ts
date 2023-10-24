@@ -3,24 +3,24 @@ import OpenAI from 'openai';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-  organization: process.env.OPENAIA_ORG
+  organization: process.env.OPENAIA_ORG,
 });
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { prompt } = JSON.parse(req.body)
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  // Here we need to extract the prompt from the request body into a variable
 
   if (!prompt) {
-    return res.status(400).json({ error: 'requiredParam "prompt" is missing' });
+    // Here we should return a 404 with an error message if there is no prompt
   }
 
-  const chatCompletion = await openai.chat.completions.create({
-    messages: [{ role: "user", content: `Write a creative startup idea to disrupt the industry deliminated by { }, 100 words maximum, {${prompt}}` }],
-    model: "gpt-3.5-turbo",
-  });
+  const chatCompletion = 
+  // Here we need to use openai.chat.completions along with our chosen settings and prompt to return the completion 
 
-  // const availableModels = await openai.models.list()
-  const completionText = chatCompletion.choices[0].message.content
-  // console.log(completionText)
 
-  res.status(200).json({ data: completionText })
+  // Extract the part of the response we are interested in and respond with a 200 and the data
+  // Have a look at the implementation in example.ts 
+  
 }
