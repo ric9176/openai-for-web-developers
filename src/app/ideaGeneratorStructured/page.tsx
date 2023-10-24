@@ -23,7 +23,7 @@ interface GenerationData {
 export default function IdeaGenerator() {
   const [idea, setIdea] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [generation, setGeneration] = useState<GenerationData | undefined>(
+  const [completion, setCompletion] = useState<GenerationData | undefined>(
     undefined
   );
 
@@ -34,7 +34,7 @@ export default function IdeaGenerator() {
 
     setIsLoading(true);
     setIdea('');
-    setGeneration(undefined);
+    setCompletion(undefined);
 
     const { data } = await fetch('/api/generateData', {
       method: 'POST',
@@ -43,7 +43,7 @@ export default function IdeaGenerator() {
       }),
     }).then((r) => r.json());
 
-    setGeneration(data);
+    setCompletion(data);
 
     const { image } = await fetch('/api/generateImage', {
       method: 'POST',
@@ -102,7 +102,7 @@ export default function IdeaGenerator() {
         </Box>
       )}
 
-      {!isLoading && generation && imageSrc && (
+      {!isLoading && completion && imageSrc && (
         <VStack
           bg='whiteAlpha.800'
           color='black'
@@ -114,17 +114,17 @@ export default function IdeaGenerator() {
         >
           <Image alt='idea image' src={imageSrc} />
           <Text>
-            <b>Product:</b> {generation && generation.idea}
+            <b>Product:</b> {completion && completion.idea}
           </Text>
           <Text>
-            <b>Idea:</b> {generation && generation.idea}
+            <b>Idea:</b> {completion && completion.idea}
           </Text>
           <Text>
-            <b>Mission:</b> {generation && generation.mission}
+            <b>Mission:</b> {completion && completion.mission}
           </Text>
           <b>What makes us unique?</b>
-          {generation &&
-            generation.unique_selling_points.map((usp, k) => (
+          {completion &&
+            completion.unique_selling_points.map((usp, k) => (
               <Text key-={k}>{usp}</Text>
             ))}
         </VStack>
