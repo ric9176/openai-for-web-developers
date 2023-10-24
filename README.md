@@ -68,6 +68,7 @@ npm run dev
 
 ### Part 1: OpenAI API Integration
 
+0. Check your API keys are working, go to http://localhost:3000/api/example and you should see the available models in the data returned. TIP: use [JSON formatter extension](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?utm_source=ext_sidebar&hl=en-US) if you don't already!
 1. Implement the OpenAI API in a NextJS serverless function.
 2. Craft a prompt that generates startup ideas. Ensure it returns:
    - Product Name

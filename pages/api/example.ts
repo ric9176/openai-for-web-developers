@@ -20,5 +20,5 @@ export default async function handler(
   const availableModels = await openai.models.list();
   const completionText = chatCompletion.choices[0].message.content;
 
-  res.status(200).json({ data: completionText });
+  res.status(200).json({ data: availableModels });
 }
