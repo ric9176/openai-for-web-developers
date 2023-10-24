@@ -6,36 +6,24 @@ const openai = new OpenAI({
   organization: process.env.OPENAIA_ORG,
 });
 
-const shape = {
-  product: 'string',
-  idea: 'string',
-  mission: 'string',
-  unique_selling_points: ['string', 'string', 'string'],
-};
+// Create a shape object (schema) for the structured data you want returned. Your schema should have a product, idea, mission and a list of unique selling points. HINT: Look at the interface in ideaGeneratorStructured/page.ts
+
+// You can use JSON.stringify when adding this in the prompt.
+
+// This is the most simplistic approach, bear in mind that JSON schema is also well understood by the LLM!
+const shape = {};
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { prompt } = JSON.parse(req.body);
+  // Extract the prompt and handle no prompt being passed as in the previous excercise
 
-  if (!prompt) {
-    return res.status(400).json({ error: 'requiredParam "prompt" is missing' });
-  }
+  // Implement the chat completion API here and craft a prompt that takes in the user input and returns JSON in the shape specified
 
-  const ideaAttributes = await openai.chat.completions.create({
-    messages: [
-      {
-        role: 'user',
-        content: `A unique startup idea to disrupt: ${prompt}, There should be a product, idea, mission and an array of 5 unique selling points, no more than 100 words each, Return the response as a JSON object with a shape of: ${JSON.stringify(
-          shape
-        )}`,
-      },
-    ],
-    model: 'gpt-3.5-turbo',
-  });
-
-  const data = JSON.parse(ideaAttributes.choices[0].message.content as string);
+  // As we are builing a custom API, we should parse the output on the server, for example:
+  const data = JSON.parse(completion.choices[0].message.content as string);
+  // Bonus: Add further error handling, what if they JSON.parse fails? You could make the API call again..
 
   res.status(200).json({ data });
 }
