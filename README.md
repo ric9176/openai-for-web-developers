@@ -86,21 +86,18 @@ npm run dev
 
 ### Part 2: Integrate User Input
 
-1. Utilize `pages/api/generateText` function for server-side implementation. You should expect an input to be passed on the request from the client and then use this in your prompt. HINT: check out the code comments!
-2. Implement your frontend logic in `ideaGenerator/page.tsx`, and look for hints to guide your integration.
+0. Navigate to http://localhost:3000/ideaGenerator. This is the page we'll implement
+1. Utilize `pages/api/generateText.ts` for server-side implementation. You should expect an input to be passed on the request from the client and then use this in your prompt.
+   HINT: check out the code comments in that file!
+2. Implement your frontend in `ideaGenerator/page.tsx`, you'll need to make a POST request to the endpoint at `/api/generateText` that contains the user input to be passed into the prompt.
 
-## Exercise 2: Prompt Engineering and Image Generation
+### Part 3: Image Generation
 
-### Part 1: Prompt Engineering for Images
-
-1. Develop a prompt for generating relevant images in `pages/api/generateImage.ts`.
+1. Further develop a prompt for generating an image based on the user input in `pages/api/generateImage.ts`.
 2. You will receive a URL in response, where you can view the generated image.
+3. Integrate the image generation functionality into your startup idea generator in `ideaGenerator/page.tsx`.
 
-### Part 2: Frontend Integration
-
-1. Integrate the image generation functionality into your startup idea generator in `ideaGenerator/page.tsx`.
-
-## Exercise 3: Working with Structured Data
+## Exercise 2: Working with Structured Data
 
 ### Part 1: Generate Structured Data
 

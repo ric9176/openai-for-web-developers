@@ -10,20 +10,21 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { prompt } = JSON.parse(req.body);
+  // Extract the users prompt into a variable from the request
 
-  if (!prompt) {
-    return res.status(400).json({ error: 'requiredParam "prompt" is missing' });
-  }
+  // if (!prompt) {
+  // Handle the case where no prompt was provided (same as /generateText)
+  // }
 
+  // Implement the users input from the frontend into the prompt for the industry and further improve
+
+  //@ts-ignore
   const response = await openai.images.generate({
-    prompt: `An impressionist oil painting that represents an innovative ${prompt} business in action with customers`,
-    n: 1,
-    size: '512x512',
-    response_format: 'url', // url expires after 1 hour
+    // Enter your image generation config here to return a url to the image.
+    // Reference guide: https://platform.openai.com/docs/guides/images/usage?lang=node.js
+    // HINT: size '512x512' will be enough
+    // Refernece Docs: https://platform.openai.com/docs/api-reference/images/create#images/create-response_format
   });
-
-  // Reference docs: https://platform.openai.com/docs/guides/images/usage?lang=node.js
 
   const imageUrl = response.data[0].url;
 

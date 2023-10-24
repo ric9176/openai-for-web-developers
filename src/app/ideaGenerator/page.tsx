@@ -15,36 +15,24 @@ import {
 } from '@chakra-ui/react';
 
 export default function SloganGenerator() {
-  const [idea, setIdea] = useState('');
+  const [industry, setIndustry] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [generation, setGeneration] = useState(null);
+  const [textCompletion, setTextCompletion] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
 
   async function handleOnGenerateText(e: React.SyntheticEvent) {
     e.preventDefault();
-    setGeneration(null);
 
-    setIsLoading(true);
+    // In this handler function will send the input to the serverless function at /api/generateText. You will need to do a few things:
 
-    const { data } = await fetch('/api/generateText', {
-      method: 'POST',
-      body: JSON.stringify({
-        prompt: idea,
-      }),
-    }).then((r) => r.json());
+    // 1.  You'll need to have some state to store the result and also loading state and the input field, you can use the state above or create your own ;-)
 
-    setGeneration(data);
+    // 2.  Call the enpoint at /api/generateText using the fetch api (or other if you prefer), then set the data into component state.
 
-    const { image } = await fetch('/api/generateImage', {
-      method: 'POST',
-      body: JSON.stringify({
-        prompt: idea,
-      }),
-    }).then((r) => r.json());
-    setImageSrc(image);
+    // 3. Ensure that it works end to end for idea generation, feel free to adapt the UX!
 
-    setIsLoading(false);
-    setIdea('');
+    // 4. Once you have the text generation working, you can do the same thing with the image. The end result should be that you have your startup idea completion text along with an image based on the same user input.
+    // HINT: You can simply use the Chakra Image component to display the generated image via the returned url: <Image alt='idea image' src={imageSrc} />
   }
 
   return (
@@ -53,8 +41,8 @@ export default function SloganGenerator() {
         <HStack spacing={2} w='60%' as='form' alignItems='center'>
           <Input
             placeholder="What industry do you want to disrupt? e.g: 'travel'"
-            value={idea}
-            onChange={(e) => setIdea(e.target.value)}
+            value={industry}
+            onChange={(e) => setIndustry(e.target.value)}
             maxW='lg'
             width='100%'
           />
@@ -93,7 +81,7 @@ export default function SloganGenerator() {
         </Box>
       )}
 
-      {!isLoading && generation && imageSrc && (
+      {!isLoading && textCompletion && (
         <VStack
           bg='whiteAlpha.800'
           color='black'
@@ -103,8 +91,7 @@ export default function SloganGenerator() {
           alignItems='center'
           spacing={6}
         >
-          <Image alt='idea image' src={imageSrc} />
-          <Text>{generation}</Text>
+          <Text>{textCompletion}</Text>
         </VStack>
       )}
     </Container>
