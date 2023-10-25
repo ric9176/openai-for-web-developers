@@ -89,7 +89,7 @@ npm run dev
 0. Navigate to http://localhost:3000/ideaGenerator. This is the page we'll implement
 1. Utilize `pages/api/generateText.ts` for server-side implementation. You should expect an input to be passed on the request from the client and then use this in your prompt.
    HINT: check out the code comments in that file!
-2. Implement your frontend in `ideaGenerator/page.tsx`, you'll need to make a POST request to the endpoint at `/api/generateText` that contains the user input to be passed into the prompt.
+2. Implement your frontend in `ideaGenerator/page.tsx`, you'll need to make a POST request to the endpoint at `pages/api/generateText` that contains the user input to be passed into the prompt.
 
 ### Part 3: Image Generation
 
@@ -101,9 +101,9 @@ npm run dev
 
 ### Part 1: Generate Structured Data
 
-1. Modify your prompts to make the AI return structured data (JSON) for easier UI layout.
-2. **Bonus**: Implement multishot prompting to improve results.
-3. **Bonus**: Explore output parsing using Zod for structured and validated data handling.
+1. In `/pages/api/GenerateData` Implement your existing prompt along with a shape (schema) for the JSON you want the LLM to return. The data should include a product, idea, mission and a list of unique selling points, feel free to add more things! Check the code comments for hints.
+2. Complete the implemetation of the frontend in `ideaGeneratorStructured/page.tsx`.
+3. **Bonus**: Explore using Zod for your schema creation and validation with zodToJsonSchema, passing the LLM a JSON schema works well. This is also the approach taken by the [output parser from langchain](https://js.langchain.com/docs/modules/model_io/output_parsers/structured#structured-output-parser-with-zod-schema). You could try implementing your own or try using their output parser.
 
 ## Exercise 4: Implement Streaming for Better User Experience
 
