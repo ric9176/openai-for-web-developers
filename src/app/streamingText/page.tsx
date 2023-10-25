@@ -14,7 +14,7 @@ import {
 export default function StartGenerator() {
   const { completion, input, handleInputChange, handleSubmit, isLoading } =
     useCompletion({
-      api: 'api/completion',
+      api: 'api/completionData',
     });
 
   return (
