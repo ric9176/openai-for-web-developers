@@ -15,8 +15,9 @@ import {
 } from '@chakra-ui/react';
 
 interface GenerationData {
-  idea: string;
+  product: string;
   mission: string;
+  idea: string;
   unique_selling_points: string[];
 }
 
@@ -114,7 +115,7 @@ export default function IdeaGenerator() {
         >
           <Image alt='idea image' src={imageSrc} />
           <Text>
-            <b>Product:</b> {completion && completion.idea}
+            <b>Product:</b> {completion && completion.product}
           </Text>
           <Text>
             <b>Idea:</b> {completion && completion.idea}
