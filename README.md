@@ -107,13 +107,17 @@ npm run dev
 
 ## Exercise 4: Implement Streaming for Better User Experience
 
-### Part 1: Text Streaming
+### Part 1: Text Streaming with Vercel's openai-stream
 
-1. Implement text streaming in your application to enhance the user experience.
+Note: We will use the Next13 app router for this section
 
-### Part 2: Advanced Streaming (Bonus)
+1. Go to `src/app/api/completion/route.ts`. Implement text streaming on the server to generate a startup idea to enhance the user experience. Vercel has made it super simple, follow the docs: https://sdk.vercel.ai/docs/api-reference/openai-stream
+2. Go to `src/app/streamingText/page.ts`. Implement the utility hook useCompletion in the UI and ensure it's working, see the code comments and use the docs: https://sdk.vercel.ai/docs/api-reference/use-completion#usecompletion
 
-1. **Bonus**: Explore and implement JSON streaming using Mike's library for advanced real-time data handling.
+### Bonus: Streaming JSON
+
+1. Assuming your streaming text is working, make a slight refactor so that it returns a JSON object as we did in the previous exercise
+2. Now we would like to stream that JSON for better UX, luckily as this is a common problem there is another little helper libary we can use called http-streaming-request. Explore and implement JSON streaming using the [http-streaming-request library](https://github.com/mikeborozdin/http-streaming-request).
 
 ---
 
