@@ -1,8 +1,9 @@
 import OpenAI from 'openai';
 import fs from 'fs';
+import 'dotenv/config';
 
 const openai = new OpenAI({
-  apiKey: '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',
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 // await openai.files.create({
