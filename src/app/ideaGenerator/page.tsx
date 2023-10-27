@@ -25,13 +25,14 @@ export default function SloganGenerator() {
 
     // In this handler function will send the input to the serverless function at /api/generateText. You will need to do a few things:
 
-    // 1.  You'll need to have some state to store the result and also loading state and the input field, you can use the state above or create your own ;-)
+    // 1.  You'll need to have some state to store the result and also loading state and the input field, you can use the state above (textCompletion) or create your own ;-)
 
     // 2.  Call the enpoint at /api/generateText using the fetch api (or other if you prefer), then set the data into component state.
 
     // 3. Ensure that it works end to end for idea generation, feel free to adapt the UX!
 
     // 4. Once you have the text generation working, you can do the same thing with the image. The end result should be that you have your startup idea completion text along with an image based on the same user input.
+
     // HINT: You can simply use the Chakra Image component to display the generated image via the returned url: <Image alt='idea image' src={imageSrc} />
   }
 
