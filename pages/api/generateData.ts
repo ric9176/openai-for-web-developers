@@ -3,7 +3,6 @@ import OpenAI from 'openai';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-  organization: process.env.OPENAIA_ORG,
 });
 
 // Create a shape object (schema) for the structured data you want returned. Your schema should have a product, idea, mission and a list of unique selling points. HINT: Look at the interface in ideaGeneratorStructured/page.ts
