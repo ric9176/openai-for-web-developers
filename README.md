@@ -69,20 +69,20 @@ npm run dev
 ### Part 1: OpenAI API Integration
 
 0. Check your API keys are working, go to http://localhost:3000/api/example and you should see the available models in the data returned. TIP: use [JSON formatter extension](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?utm_source=ext_sidebar&hl=en-US) if you don't already!
-1. In /pages/api/generateText Implement the OpenAI API in a NextJS serverless function. You should see your ouput at localhost:3000/api/generateText
-2. Craft a prompt that generates startup ideas. Try getting it to return a completion that includes:
+1. In /pages/api/example.ts We are currently sending the list of models to the client, change the code so that we are sending the text completion. You should see the data at lhttp://localhost:3000/api/example
+2. Craft a new prompt(s) that generates startup ideas. Try getting the API to return a completion that includes:
    - Product Name
    - Idea
    - Mission
    - Unique Selling Points (USPs)
    - Remember, you can also use the [playground](https://platform.openai.com/playground)
 3. Analyze the API response:
-   - Note how many tokens your prompt is using.
-   - Explore ways to improve the response with best practice prompting.
-   - Investigate whether changing the model and hyperparameters makes a significant difference.
-   - Remember, you can also use the [playground](https://platform.openai.com/playground)
+   - Note how many tokens your prompt is using? [What is the cost?](https://openai.com/pricing#language-models)
+   - Explore ways to improve the response with best practice prompting we talked about.
+   - Investigate whether changing the model (gpt-3.5-turbo) and the hyperparameters (currently default!) makes a significant difference. [Check the docs](https://platform.openai.com/docs/api-reference/chat/create)
+   - Remember, you can also use the [playground](https://platform.openai.com/playground), then copy across your prompt and settings.
 4. **Bonus**: In /pages/api/generateImage start experimenting with the images endpoint in the
-   OpenAI API. Use your prompting knowledge to generate an image for a given startup idea.
+   OpenAI API. Use your prompting knowledge to generate an image for a given startup idea. For now you can simply return the url and click to view.
 
 ### Part 2: Integrate User Input
 
