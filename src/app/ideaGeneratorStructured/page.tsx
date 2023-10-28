@@ -31,7 +31,7 @@ export default function IdeaGenerator() {
   const [imageSrc, setImageSrc] = useState<string | undefined>(undefined);
 
   // First check the data you are recieving in this component: console.log('completion', completion)
-  // Then finish the implementation on from line 121
+  // Then finish the implementation from line 121
 
   async function handleOnGenerateText(e: React.SyntheticEvent) {
     // This is an example implementation for calling the endpoints, feel free to modify!

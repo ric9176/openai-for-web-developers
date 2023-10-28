@@ -99,15 +99,15 @@ npm run dev
 
 ## Exercise 2: Working with Structured Data
 
-### Part 1: Generate Structured Data
+### Generate Structured Data
 
 1. In `/pages/api/GenerateData` Implement your existing prompt along with a shape (schema) for the JSON you want the LLM to return. The data should include a product, idea, mission and a list of unique selling points, feel free to add more things! Check the code comments for hints.
 2. Complete the implemetation of the frontend in `ideaGeneratorStructured/page.tsx`.
 3. **Bonus**: Explore using Zod for your schema creation and validation with zodToJsonSchema, passing the LLM a JSON schema works well. This is also the approach taken by the [output parser from langchain](https://js.langchain.com/docs/modules/model_io/output_parsers/structured#structured-output-parser-with-zod-schema). You could try implementing your own or try using their output parser.
 
-## Exercise 4: Implement Streaming for Better User Experience
+## Exercise 3: Implement Streaming for Better User Experience
 
-### Part 1: Text Streaming with Vercel's openai-stream
+### Text Streaming with Vercel's openai-stream
 
 Note: We will use the Next13 app router for this section
 
