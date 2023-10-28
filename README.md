@@ -91,7 +91,7 @@ npm run dev
    HINT: check out the code comments in that file!
 2. Implement your frontend in `ideaGenerator/page.tsx`, you'll need to make a POST request to the endpoint at `pages/api/generateText` that contains the user input to be passed into the prompt.
 
-### Part 3: Image Generation
+### Part 3 (BONUS): Image Generation
 
 1. Further develop a prompt for generating an image based on the user input in `pages/api/generateImage.ts`.
 2. You will receive a URL in response, where you can view the generated image.
