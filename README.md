@@ -59,8 +59,8 @@ npm run dev
 
 ### Resources
 
-- Next.js Documentation
-- OpenAI API Documentation
+- [Next.js Documentation](https://nextjs.org/docs)
+- [OpenAI API Documentation](https://platform.openai.com/docs/introduction)
 
 # Exercise Instructions
 
@@ -69,51 +69,60 @@ npm run dev
 ### Part 1: OpenAI API Integration
 
 0. Check your API keys are working, go to http://localhost:3000/api/example and you should see the available models in the data returned. TIP: use [JSON formatter extension](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?utm_source=ext_sidebar&hl=en-US) if you don't already!
-1. In /pages/api/generateText Implement the OpenAI API in a NextJS serverless function. You should see your ouput at localhost:3000/api/generateText
-2. Craft a prompt that generates startup ideas. Try getting it to return a completion that includes:
+1. In /pages/api/example.ts We are currently sending the list of models to the client, change the code so that we are sending the text completion. You should see the data at lhttp://localhost:3000/api/example
+2. Craft a new prompt(s) that generates startup ideas. Try getting the API to return a completion that includes:
    - Product Name
    - Idea
    - Mission
    - Unique Selling Points (USPs)
    - Remember, you can also use the [playground](https://platform.openai.com/playground)
 3. Analyze the API response:
-   - Note how many tokens your prompt is using.
-   - Explore ways to improve the response with best practice prompting.
-   - Investigate whether changing the model and hyperparameters makes a significant difference.
-   - Remember, you can also use the [playground](https://platform.openai.com/playground)
+   - Note how many tokens your prompt is using? [What is the cost?](https://openai.com/pricing#language-models)
+   - Explore ways to improve the response with best practice prompting we talked about.
+   - Investigate whether changing the model (gpt-3.5-turbo) and the hyperparameters (currently default!) makes a significant difference. [Check the docs](https://platform.openai.com/docs/api-reference/chat/create)
+   - Remember, you can also use the [playground](https://platform.openai.com/playground), then copy across your prompt and settings.
 4. **Bonus**: In /pages/api/generateImage start experimenting with the images endpoint in the
-   OpenAI API. Use your prompting knowledge to generate an image for a given startup idea.
+   OpenAI API. Use your prompting knowledge to generate an image for a given startup idea. For now you can simply return the url and click to view.
 
 ### Part 2: Integrate User Input
 
 0. Navigate to http://localhost:3000/ideaGenerator. This is the page we'll implement
 1. Utilize `pages/api/generateText.ts` for server-side implementation. You should expect an input to be passed on the request from the client and then use this in your prompt.
    HINT: check out the code comments in that file!
-2. Implement your frontend in `ideaGenerator/page.tsx`, you'll need to make a POST request to the endpoint at `/api/generateText` that contains the user input to be passed into the prompt.
+2. Implement your frontend in `ideaGenerator/page.tsx`, you'll need to make a POST request to the endpoint at `pages/api/generateText` that contains the user input to be passed into the prompt.
 
-### Part 3: Image Generation
+### Part 3 (BONUS): Image Generation
 
 1. Further develop a prompt for generating an image based on the user input in `pages/api/generateImage.ts`.
-2. You will receive a URL in response, where you can view the generated image. You can test it in the browser visiting
+2. You will receive a URL in response, where you can view the generated image.
 3. Integrate the image generation functionality into your startup idea generator in `ideaGenerator/page.tsx`.
 
 ## Exercise 2: Working with Structured Data
 
-### Part 1: Generate Structured Data
+### Generate Structured Data
 
-1. Modify your prompts to make the AI return structured data (JSON) for easier UI layout.
-2. **Bonus**: Implement multishot prompting to improve results.
-3. **Bonus**: Explore output parsing using Zod for structured and validated data handling.
+1. In `/pages/api/GenerateData` Implement your existing prompt along with a shape (schema) for the JSON you want the LLM to return. The data should include a product, idea, mission and a list of unique selling points, feel free to add more things! Check the code comments for hints.
+2. Complete the implemetation of the frontend in `ideaGeneratorStructured/page.tsx`.
+3. **Bonus**: Explore using Zod for your schema creation and validation with zodToJsonSchema, passing the LLM a JSON schema works well. This is also the approach taken by the [output parser from langchain](https://js.langchain.com/docs/modules/model_io/output_parsers/structured#structured-output-parser-with-zod-schema). You could try implementing your own or try using their output parser.
 
-## Exercise 4: Implement Streaming for Better User Experience
+## Exercise 3: Implement Streaming for Better User Experience
 
-### Part 1: Text Streaming
+### Text Streaming with Vercel's openai-stream
 
-1. Implement text streaming in your application to enhance the user experience.
+Note: We will use the Next13 app router for this section
 
-### Part 2: Advanced Streaming (Bonus)
+1. Go to `src/app/api/completion/route.ts`. Implement text streaming on the server to generate a startup idea to enhance the user experience. Vercel has made it super simple, follow the docs: https://sdk.vercel.ai/docs/api-reference/openai-stream
+2. Go to `src/app/streamingText/page.ts`. Implement the utility hook useCompletion in the UI and ensure it's working, see the code comments and use the docs: https://sdk.vercel.ai/docs/api-reference/use-completion#usecompletion
 
-1. **Bonus**: Explore and implement JSON streaming using Mike's library for advanced real-time data handling.
+### Bonus: Streaming JSON
+
+1. Assuming your streaming text is working, make a refactor so that it returns a JSON object as we did in the previous exercise.
+2. Now we would like to stream that JSON for better UX, luckily as this is a common problem there is another little helper libary we can use called http-streaming-request. Explore and implement JSON streaming using the [http-streaming-request library](https://github.com/mikeborozdin/http-streaming-request). There is a mostly compelte template you can use to try this in `src/app/streamingJSON/page.ts` you can see the result at http://localhost:3000/streamingJSON
+
+## Fine Tuning excercise (Bonus)
+
+1. Have a look at the example data in scripts/fineTuneData.jsonl. Have a go at preaparing your own.
+2. Have a look at the examples of uploading and fine tuning a model via the api in createModel.mjs. Have a go at uploading and listing files and training a model. You can run this script with `node`, don't forget to update the .env with your api key.
 
 ---
 
