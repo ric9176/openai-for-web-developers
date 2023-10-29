@@ -59,8 +59,8 @@ npm run dev
 
 ### Resources
 
-- Next.js Documentation
-- OpenAI API Documentation
+- [Next.js Documentation](https://nextjs.org/docs)
+- [OpenAI API Documentation](https://platform.openai.com/docs/introduction)
 
 # Exercise Instructions
 
@@ -118,6 +118,11 @@ Note: We will use the Next13 app router for this section
 
 1. Assuming your streaming text is working, make a refactor so that it returns a JSON object as we did in the previous exercise.
 2. Now we would like to stream that JSON for better UX, luckily as this is a common problem there is another little helper libary we can use called http-streaming-request. Explore and implement JSON streaming using the [http-streaming-request library](https://github.com/mikeborozdin/http-streaming-request). There is a mostly compelte template you can use to try this in `src/app/streamingJSON/page.ts` you can see the result at http://localhost:3000/streamingJSON
+
+## Fine Tuning excercise (Bonus)
+
+1. Have a look at the example data in scripts/fineTuneData.jsonl. Have a go at preaparing your own.
+2. Have a look at the examples of uploading and fine tuning a model via the api in createModel.mjs. Have a go at uploading and listing files and training a model. You can run this script with `node`, don't forget to update the .env with your api key.
 
 ---
 
