@@ -1,6 +1,6 @@
+import 'dotenv/config';
 import OpenAI from 'openai';
 import fs from 'fs';
-import 'dotenv/config';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -21,5 +21,5 @@ console.log('🚀 ~ file: createModel.ts:15 ~ files:', files);
 // });
 // console.log('🚀 ~ file: createModel.mjs:21 ~ fineTune:', fineTune);
 
-let jobs = await openai.fineTuning.jobs.list({ limit: 10 });
-console.log('🚀 ~ file: createModel.mjs:23 ~ jobs:', jobs);
+// let jobs = await openai.fineTuning.jobs.list({ limit: 10 });
+// console.log('🚀 ~ file: createModel.mjs:23 ~ jobs:', jobs);
