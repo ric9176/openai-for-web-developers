@@ -9,6 +9,7 @@ import {
   Spacer,
   HStack,
   VStack,
+  Image,
 } from '@chakra-ui/react';
 
 interface GenerationData {
@@ -21,6 +22,7 @@ interface GenerationData {
 export default function StartGenerator() {
   const [data, setdata] = useState<GenerationData | undefined>(undefined);
   const [input, setInput] = useState('');
+  const [imageSrc, setImageSrc] = useState('');
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -31,6 +33,14 @@ export default function StartGenerator() {
     })) {
       setdata(partialData);
     }
+
+    const { image } = await fetch('/api/generateImage', {
+      method: 'POST',
+      body: JSON.stringify({
+        prompt: input,
+      }),
+    }).then((r) => r.json());
+    setImageSrc(image);
   };
 
   return (
@@ -71,6 +81,7 @@ export default function StartGenerator() {
         alignItems='center'
         spacing={6}
       >
+        {imageSrc && <Image alt='idea image' src={imageSrc} />}
         <Text>Product: {data && data.product}</Text>
         <Text>Mission: {data && data.mission}</Text>
         <Text>Idea: {data && data.idea}</Text>
