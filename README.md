@@ -89,20 +89,20 @@ npm run dev
 0. Navigate to http://localhost:3000/ideaGenerator. This is the page we'll implement
 1. Utilize `pages/api/generateText.ts` for server-side implementation. You should expect an input to be passed on the request from the client and then use this in your prompt.
    HINT: check out the code comments in that file!
-2. Implement your frontend in `ideaGenerator/page.tsx`, you'll need to make a POST request to the endpoint at `pages/api/generateText` that contains the user input to be passed into the prompt.
+2. Implement your frontend in `src/app/ideaGenerator/page.tsx`, you'll need to make a POST request to the endpoint at `pages/api/generateText` that contains the user input to be passed into the prompt.
 
 ### Part 3 (BONUS): Image Generation
 
 1. Further develop a prompt for generating an image based on the user input in `pages/api/generateImage.ts`.
 2. You will receive a URL in response, where you can view the generated image.
-3. Integrate the image generation functionality into your startup idea generator in `ideaGenerator/page.tsx`.
+3. Integrate the image generation functionality into your startup idea generator in `src/app/ideaGenerator/page.tsx`.
 
 ## Exercise 2: Working with Structured Data
 
 ### Generate Structured Data
 
-1. In `/pages/api/GenerateData` Implement your existing prompt along with a shape (schema) for the JSON you want the LLM to return. The data should include a product, idea, mission and a list of unique selling points, feel free to add more things! Check the code comments for hints.
-2. Complete the implemetation of the frontend in `ideaGeneratorStructured/page.tsx`.
+1. In `pages/api/GenerateData` Implement your existing prompt along with a shape (schema) for the JSON you want the LLM to return. The data should include a product, idea, mission and an array of unique selling points, feel free to add more things! Check the code comments for hints.
+2. Complete the implemetation of the frontend in `src/app/ideaGeneratorStructured/page.tsx`.
 3. **Bonus**: Explore using Zod for your schema creation and validation with zodToJsonSchema, passing the LLM a JSON schema works well. This is also the approach taken by the [output parser from langchain](https://js.langchain.com/docs/modules/model_io/output_parsers/structured#structured-output-parser-with-zod-schema). You could try implementing your own or try using their output parser.
 
 ## Exercise 3: Implement Streaming for Better User Experience

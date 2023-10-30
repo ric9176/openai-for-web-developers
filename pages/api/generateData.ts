@@ -7,7 +7,7 @@ const openai = new OpenAI({
 
 // Create a shape object (schema) for the structured data you want returned. Your schema should have a product, idea, mission and a list of unique selling points. HINT: Look at the interface in ideaGeneratorStructured/page.ts
 
-// You can use JSON.stringify when adding this in the prompt.
+// You can use JSON.stringify when adding this shape object in the prompt.
 
 // This is the most simplistic approach, bear in mind that JSON schema is also well understood by the LLM!
 const shape = {};
